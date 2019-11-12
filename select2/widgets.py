@@ -96,7 +96,7 @@ class Select(widgets.Input):
             "text": force_text(option_label),
         }
 
-    def render(self, name, value, attrs=None, choices=(), js_options=None):
+    def render(self, name, value, attrs=None, choices=(), js_options=None, renderer=None):
         options = {}
         attrs = dict(self.attrs, **(attrs or {}))
         js_options = js_options or {}
@@ -143,7 +143,7 @@ class Select(widgets.Input):
             })
         if self.ajax or self.sortable:
             self.input_type = 'hidden'
-            return super(Select, self).render(name, value, attrs=attrs)
+            return super(Select, self).render(name, value, attrs=attrs, renderer=None)
         else:
             return self.render_select(name, value, attrs=attrs, choices=choices)
 
